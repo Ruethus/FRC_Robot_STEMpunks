@@ -13,7 +13,7 @@ public class DigitalIOSet
 
 	public DigitalIOSet(int alphaPort,int omegaPort)
 	{
-		if((!(alphaPort > 0) || !(omegaPort > 0)) || !(omegaPort <= 12))
+		if((!(alphaPort > 0) || !(alphaPort <= 12) || !(omegaPort > 0)) || !(omegaPort <= 12))
 		{
 			System.out.println("ERROR: com.robot.out.MotorSet: Negative, zero, or overflow integer port address received. Please use integers from 1 to 12 for port addresses. Values: (" + alphaPort + "," + omegaPort + "");
 		}

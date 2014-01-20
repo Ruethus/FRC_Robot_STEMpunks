@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/ant/ant-classloadertask.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/ant/ant-contrib.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/ant/commons-net-1.4.1.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/ant/jakarta-oro-2.0.8.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/ant/sdktoolftp.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/ant/xmltask.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/bin/debugger_classes.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/bin/debugger-proxy_classes.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/bin/hosted-support_classes.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/bin/romizer_classes.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/bin/squawk_device_classes.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/bin/squawk.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/bin/translator_classes.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/cRIO_Images/FRC_2013_v47.zip"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/desktop-lib/networktables-desktop.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/desktop-lib/networktables-desktop.javadoc.zip"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/desktop-lib/networktables-desktop.src.zip"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/lib/networktables-crio.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/lib/squawk.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/lib/wpilibj.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/tools/RobotBuilder-r614.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/tools/SmartDashboard.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/tools/TableViewer-r355.jar"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/tools/SmartDashboard.javadoc.zip"/>
+	<classpathentry kind="lib" path="sunspotfrcsdk/lib/wpilibj.src.zip"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
