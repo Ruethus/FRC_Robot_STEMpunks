@@ -1,5 +1,8 @@
 package com.robot.out;
 
+import com.robot.main.Constants;
+import com.robot.main.ConstantsImpl;
+
 import edu.wpi.first.wpilibj.Jaguar;
 
 public class Arm
@@ -16,8 +19,7 @@ public class Arm
 		}
 		else
 		{
-			System.out.println("Error: Invalid Port Number");
-			System.out.println("\"*sigh*\"\t-Midna, Legend of Zelda: Twilight Princess");
+			new ConstantsImpl().errorPort(null);
 			initialized = false;
 		}
 	}
@@ -26,20 +28,18 @@ public class Arm
 	{
 		if(initialized)
 		{
-			while(winchAngle > 0.0)
+			while(winchAngle > Constants.MIN_WINCH_ANGLE)
 			{
 				; //<--- Most efficient line of code EVER!!
 			}
-			while(winchAngle < 5.0 && !trigger)
+			while(winchAngle < Constants.MAX_WINCH_ANGLE && !trigger)
 			{
 				;
 			}
 		}
 		else
 		{
-			System.out.println("Error: Arm object not initialized.");
-			System.out.println("\"Duster, you moron! *whack* You moron!\"\t-Wess, Mother 3");
-
+			new ConstantsImpl().errorArmInit(null);
 		}
 	}
 	public void fire(double armAngle,double winchAngle, boolean trigger)
@@ -50,8 +50,7 @@ public class Arm
 		}
 		else
 		{
-			System.out.println("Error: Arm object not initialized.");
-			System.out.println("\"Duster, you moron! *whack* You moron!\"\t-Wess, Mother 3");
+			new ConstantsImpl().errorArmInit(null);
 		}
 	}
 }
