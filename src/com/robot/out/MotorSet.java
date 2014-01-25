@@ -1,7 +1,5 @@
 package com.robot.out;
 
-import java.util.ArrayList;
-
 import edu.wpi.first.wpilibj.Jaguar;
 
 public class MotorSet
@@ -9,7 +7,7 @@ public class MotorSet
 	int alphaPort,omegaPort;
 	String[] names;
 	double[] values;
-	ArrayList<Jaguar> motors;
+	Jaguar[] motors;
 
 	public MotorSet(int alphaPort,int omegaPort)
 	{
@@ -21,12 +19,12 @@ public class MotorSet
 		this.omegaPort = omegaPort;
 		names = new String[(omegaPort-alphaPort)];
 		values = new double[(omegaPort-alphaPort)];
-		motors = new ArrayList<Jaguar>();
-		for(int x = alphaPort;x < omegaPort;x++)
+		motors = new Jaguar[(omegaPort-alphaPort)];
+		for(int x = 0;x < (omegaPort-alphaPort);x++)
 		{
-			motors.add(new Jaguar(x));
-			values[x-alphaPort] = 0;
-			names[x-alphaPort] = "";
+			motors[x] = new Jaguar(x+alphaPort);
+			values[x] = 0;
+			names[x] = "";
 		}
 			
 	}
@@ -76,12 +74,12 @@ public class MotorSet
 	{
 		// System.out.println("\nMotors updated.\n");
 		for(int x = alphaPort;x < omegaPort;x++)
-			motors.get(x-alphaPort).set(values[x-alphaPort]);
+			motors[x-alphaPort].set(values[x-alphaPort]);
 		// printSpecs();
 	}
 	
 	public Jaguar getObject(int portnum)
 	{
-		return motors.get(portnum-alphaPort);
+		return ((Jaguar) motors[portnum-alphaPort]);
 	}
 }

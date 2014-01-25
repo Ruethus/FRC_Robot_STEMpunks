@@ -1,6 +1,7 @@
 package com.robot.main;
 
 import com.robot.in.DigitalIOSet;
+import com.robot.out.Arm;
 import com.robot.out.MotorSet;
 
 import edu.wpi.first.wpilibj.Jaguar;
@@ -10,18 +11,19 @@ import edu.wpi.first.wpilibj.SimpleRobot;
 
 public class BasicBot extends SimpleRobot
 {
-	MotorSet drv = new MotorSet(1,4),arm = new MotorSet(5,12);
+	MotorSet drv = new MotorSet(1,4),motors = new MotorSet(6,12);
 	DigitalIOSet dio = new DigitalIOSet(1,12);
 	Joystick j1,j2;
 	RobotDrive chassis;
 	Jaguar leftDriveMotor,rightDriveMotor;
 	double mag,theta,rotation;
+	Arm arm;
 
 	public void robotInit()
 	{
-		{ // MotorSet initialization
+		{ // Motor initialization
 			chassis = new RobotDrive(drv.getObject(0),drv.getObject(1),drv.getObject(2),drv.getObject(3));
-
+			arm = new Arm(5);
 		}
 
 		{ // DigitalIOSet initialization
@@ -39,7 +41,7 @@ public class BasicBot extends SimpleRobot
 			// Autonomous code goes here
 		}
 		drv.update();
-		arm.update();
+		motors.update();
 	}
 
 	public void operatorControl()
@@ -66,16 +68,5 @@ public class BasicBot extends SimpleRobot
 		 * chassis.mecanumDrive_Polar(mag,theta,rotation);
 		 */
 		chassis.arcadeDrive(j1);
-		if (j1.getRawButton(1))
-			arm.setValue(5,1);
-		else if (dio.getValue(1))
-			arm.setValue(5,0);
-		else
-			arm.setValue(6,-1);
-		if (j1.getRawButton(2))
-			arm.setValue(6,1);
-		else
-			arm.setValue(6,-1);
-		arm.update();
 	}
 }
