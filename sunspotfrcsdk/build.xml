@@ -82,7 +82,7 @@
 	</target>
 	
     <target name="run">
-		<frcrun remoteaddress="${remoteaddress}"/>
+		<frcrun remoteaddress="10.39.66.2"/>
 	</target>
 	
     <target name="javadoc">

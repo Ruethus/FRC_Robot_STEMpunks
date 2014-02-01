@@ -7,7 +7,7 @@
 		<sequential>
 			<echo>[crio-deploy] @{suite.file} -> @{remoteaddress}</echo>
 			<frcdeploy
-				remoteaddress="@{remoteaddress}"
+				remoteaddress="10.39.66.2"
 				localfile="@{suite.file}"
 				remotefilepath="/ni-rt/system/robot.suite"/>
 		</sequential>

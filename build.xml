@@ -24,6 +24,7 @@
     -->
 
     <property name="user.properties.file" value="build.properties"/>
+	<property name="sunspot.home" location="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk"/>
     <property file="${user.home}/.sunspotfrc.properties"/>
     <import file="${sunspot.home}/build.xml"/>
 

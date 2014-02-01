@@ -77,11 +77,9 @@
 				<fileset dir="${sunspot.home}/lib">
 					<patternset>
 						<include name="**/*.jar"/>
-						<invert>
 							<patternset refid="wpilibj-classpath.pattern" />
 							<patternset refid="networktables-classpath.pattern" />
 							<patternset refid="squawk-classpath.pattern" />
-						</invert>
 					</patternset>
 				</fileset>
 			</path>

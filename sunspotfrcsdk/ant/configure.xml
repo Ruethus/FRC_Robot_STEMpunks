@@ -26,7 +26,7 @@
 			<switch value="@{type}">
 				<case value="Java">
 					<frcupgrade
-							remoteaddress = "@{remoteaddress}"
+							remoteaddress = "10.39.66.2"
 							
 							localotaserverfile="@{sunspot.home}/cRIO/FRC_UserProgram.out"
 							remoteotaserverfilepath="/ni-rt/system/FRC_JavaVM.out"
@@ -39,7 +39,7 @@
 							
 							remoteversionfilepath = "/FRC_ImageVersion.ini"
 							versionfailuremessage = "Go to http://first.wpi.edu/FRC/frcjava.html to get latest software update">
-						<version name="Name" value="FRC_2013_v47.zip;"/>
+						<version name="Name" value="FRC_2014_v52.zip;"/>
 						<version name="Language" value='"Java;"'/>
 					</frcupgrade>
 				</case>
