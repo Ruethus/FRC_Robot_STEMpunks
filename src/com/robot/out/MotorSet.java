@@ -1,5 +1,7 @@
 package com.robot.out;
 
+import com.robot.main.ConstantsImpl;
+
 import edu.wpi.first.wpilibj.Jaguar;
 
 public class MotorSet
@@ -13,7 +15,7 @@ public class MotorSet
 	{
 		if((!(alphaPort > 0) || !(omegaPort > 0)) || !(omegaPort <= 12))
 		{
-			System.out.println("ERROR: com.robot.out.MotorSet: Negative, zero, or overflow integer port address received. Please use integers from 1 to 12 for port addresses. Values: (" + alphaPort + "," + omegaPort + "");
+			new ConstantsImpl().errorPort(null);
 		}
 		this.alphaPort = alphaPort;
 		this.omegaPort = omegaPort;
@@ -34,7 +36,7 @@ public class MotorSet
 		if(portNum >= alphaPort && portNum <= omegaPort)
 			names[portNum-alphaPort] = name;
 		else
-			System.out.println("ERROR: Invalid Port number.");
+			new ConstantsImpl().errorPort(null);
 	}
 
 	public void printSpecs()
@@ -48,7 +50,7 @@ public class MotorSet
 		if(portNum >= alphaPort && portNum <= omegaPort)
 			values[portNum-alphaPort] += arg0;
 		else
-			System.out.println("ERROR: Invalid Port number.");
+			new ConstantsImpl().errorPort(null);
 	}
 	
 	public void setValue(int portNum,double value)
@@ -56,7 +58,7 @@ public class MotorSet
 		if(portNum >= alphaPort && portNum <= omegaPort)
 			values[portNum-alphaPort] = value;
 		else
-			System.out.println("ERROR: Invalid Port number.");
+			new ConstantsImpl().errorPort(null);
 	}
 	
 	public double getValue(int portNum)
@@ -65,7 +67,7 @@ public class MotorSet
 			return values[portNum-alphaPort];
 		else
 		{
-			System.out.println("ERROR: Invalid Port number.");
+			new ConstantsImpl().errorPort(null);
 			return 0.0;
 		}
 	}

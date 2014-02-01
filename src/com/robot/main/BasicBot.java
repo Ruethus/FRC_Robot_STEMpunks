@@ -1,7 +1,7 @@
 package com.robot.main;
 
 import com.robot.in.DigitalIOSet;
-import com.robot.out.Arm;
+// import com.robot.out.Arm;
 import com.robot.out.MotorSet;
 
 import edu.wpi.first.wpilibj.Jaguar;
@@ -16,14 +16,14 @@ public class BasicBot extends SimpleRobot
 	Joystick j1,j2;
 	RobotDrive chassis;
 	Jaguar leftDriveMotor,rightDriveMotor;
-	double mag,theta,rotation;
-	Arm arm;
+	// double mag,theta,rotation;
+	// Arm arm;
 
 	public void robotInit()
 	{
 		{ // Motor initialization
 			chassis = new RobotDrive(drv.getObject(0),drv.getObject(1),drv.getObject(2),drv.getObject(3));
-			arm = new Arm(5);
+			// arm = new Arm(5);
 		}
 
 		{ // DigitalIOSet initialization
