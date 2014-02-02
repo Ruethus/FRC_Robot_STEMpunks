@@ -19,10 +19,10 @@ public class MotorSet
 		}
 		this.alphaPort = alphaPort;
 		this.omegaPort = omegaPort;
-		names = new String[(omegaPort-alphaPort)];
-		values = new double[(omegaPort-alphaPort)];
-		motors = new Jaguar[(omegaPort-alphaPort)];
-		for(int x = 0;x < (omegaPort-alphaPort);x++)
+		names = new String[(omegaPort-alphaPort)+1];
+		values = new double[(omegaPort-alphaPort)+1];
+		motors = new Jaguar[(omegaPort-alphaPort)+1];
+		for(int x = 0;x < (omegaPort-alphaPort)+1;x++)
 		{
 			motors[x] = new Jaguar(x+alphaPort);
 			values[x] = 0;

@@ -2,17 +2,18 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Desktop/sunspotfrcsdk/lib/networktables-crio.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Desktop/sunspotfrcsdk/lib/networktables-crio.src.zip"/>
-	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Desktop/sunspotfrcsdk/lib/squawk.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Desktop/sunspotfrcsdk/lib/wpilibj.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Desktop/sunspotfrcsdk/lib/wpilibj.project.zip"/>
-	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Desktop/sunspotfrcsdk/lib/wpilibj.src.zip"/>
-	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Desktop/sunspotfrcsdk/lib/debugger_classes.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Desktop/sunspotfrcsdk/lib/debugger-proxy_classes.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Desktop/sunspotfrcsdk/lib/hosted-support_classes.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Desktop/sunspotfrcsdk/lib/romizer_classes.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Desktop/sunspotfrcsdk/lib/squawk_device_classes.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Desktop/sunspotfrcsdk/lib/translator_classes.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/lib/networktables-crio.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/lib/networktables-crio.src.zip"/>
+	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/lib/squawk.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/lib/wpilibj.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/lib/wpilibj.project.zip"/>
+	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/lib/wpilibj.src.zip"/>
+	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/bin/debugger_classes.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/bin/debugger-proxy_classes.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/bin/hosted-support_classes.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/bin/romizer_classes.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/bin/squawk.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/bin/squawk_device_classes.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/bin/translator_classes.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

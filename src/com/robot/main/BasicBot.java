@@ -1,36 +1,35 @@
 package com.robot.main;
 
-import com.robot.in.DigitalIOSet;
+// import com.robot.in.DigitalIOSet;
 // import com.robot.out.Arm;
 import com.robot.out.MotorSet;
 
-import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.SimpleRobot;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.IterativeRobot;
 
-public class BasicBot extends SimpleRobot
+public class BasicBot extends IterativeRobot
 {
-	MotorSet drv = new MotorSet(1,4),motors = new MotorSet(6,12);
-	DigitalIOSet dio = new DigitalIOSet(1,12);
-	Joystick j1,j2;
-	RobotDrive chassis;
-	Jaguar leftDriveMotor,rightDriveMotor;
+	MotorSet drv = new MotorSet(1,2)/*,motors = new MotorSet(6,12)*/;
+	// DigitalIOSet dio = new DigitalIOSet(1,12);
+	Joystick j1/*,j2*/;
+	// Jaguar leftDriveMotor,rightDriveMotor;
 	// double mag,theta,rotation;
 	// Arm arm;
-
+	
 	public void robotInit()
 	{
 		{ // Motor initialization
-			chassis = new RobotDrive(drv.getObject(0),drv.getObject(1),drv.getObject(2),drv.getObject(3));
 			// arm = new Arm(5);
 		}
+		j1 = new Joystick(1);
+		// j2 = new Joystick(2);
 
 		{ // DigitalIOSet initialization
-			dio.setName(1,"frontLeftCollider");
-			dio.setName(2,"frontRightCollider");
-			dio.setName(3,"backLeftCollider");
-			dio.setName(4,"backRightCollider");
+			// dio.setName(1,"frontLeftCollider");
+			// dio.setName(2,"frontRightCollider");
+			// dio.setName(3,"backLeftCollider");
+			// dio.setName(4,"backRightCollider");
 		}
 	}
 
@@ -41,10 +40,15 @@ public class BasicBot extends SimpleRobot
 			// Autonomous code goes here
 		}
 		drv.update();
-		motors.update();
+		// motors.update();
 	}
 
-	public void operatorControl()
+	public void teleopInit()
+	{
+		
+	}
+	
+	public void teleopPeriodic()
 	{
 		// dio.update();
 		// double[] j1axes = {j1.getX(),j1.getY(),j1.getThrottle()};
@@ -67,6 +71,52 @@ public class BasicBot extends SimpleRobot
 		 * rotation = j1axes[2];
 		 * chassis.mecanumDrive_Polar(mag,theta,rotation);
 		 */
-		chassis.arcadeDrive(j1);
+		    
+	        double leftMotorSpeed,rightMotorSpeed,moveValue = j1.getY(),
+	        rotateValue = j1.getX();
+	        boolean squaredInputs = false;
+	        if(Math.abs(moveValue) > 1)
+	        	moveValue = moveValue/Math.abs(moveValue);
+	        if(Math.abs(rotateValue) > 1)
+	        	rotateValue = rotateValue/Math.abs(rotateValue);
+	        
+
+	        if (squaredInputs) {
+	            // square the inputs (while preserving the sign) to increase fine control while permitting full power
+	            if (moveValue >= 0.0) {
+	                moveValue = (moveValue * moveValue);
+	            } else {
+	                moveValue = -(moveValue * moveValue);
+	            }
+	            if (rotateValue >= 0.0) {
+	                rotateValue = (rotateValue * rotateValue);
+	            } else {
+	                rotateValue = -(rotateValue * rotateValue);
+	            }
+	        }
+
+	        if (moveValue > 0.0) {
+	            if (rotateValue > 0.0) {
+	                leftMotorSpeed = moveValue - rotateValue;
+	                rightMotorSpeed = Math.max(moveValue, rotateValue);
+	            } else {
+	                leftMotorSpeed = Math.max(moveValue, -rotateValue);
+	                rightMotorSpeed = moveValue + rotateValue;
+	            }
+	        } else {
+	            if (rotateValue > 0.0) {
+	                leftMotorSpeed = -Math.max(-moveValue, rotateValue);
+	                rightMotorSpeed = moveValue + rotateValue;
+	            } else {
+	                leftMotorSpeed = moveValue - rotateValue;
+	                rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
+	            }
+	        }
+
+	        drv.setValue(1,leftMotorSpeed);
+	        drv.setValue(2,rightMotorSpeed);
+	        drv.update();
+	        Timer.delay(0.01d);
+	        
 	}
 }
