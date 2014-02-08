@@ -3,6 +3,7 @@ package com.robot.out;
 import com.robot.main.Constants;
 import com.robot.main.ConstantsImpl;
 
+
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Solenoid;
 
@@ -11,14 +12,19 @@ import edu.wpi.first.wpilibj.Solenoid;
  * This class is the implementation of the Arm and Launcher.
  * @version 0.1
  * @see edu.wpi.first.wpilibj.Jaguar
- * @author CtrlFreak
- *
+ * @author CtrlFreak1337
+ * @author Ruethus
+ * 
  */
 public class Arm
 {
 	protected Jaguar winchMotor;
 	protected Solenoid armLock;
 	protected boolean initialized;
+	protected Jaguar armVacuum;
+	public boolean armBack;
+	private double winchDiff;
+	
 
 	public Arm(int portNum)
 	{
@@ -26,6 +32,7 @@ public class Arm
 		{
 			winchMotor = new Jaguar(portNum);
 			initialized = true;
+
 		}
 		else
 		{
@@ -38,31 +45,47 @@ public class Arm
 	 * This readies the launcher for firing.
 	 * @param armAngle This specifies the angle of the arm.
 	 * @param winchAngle Default min value is 0. Default max value is 5.
-	 * @param trigger Tests to see if the trigger is pressed.
+	 * @param armBack Tests to see if the launcher arm is all the way loaded.
 	 */
-	public void load(double armAngle,double winchAngle, boolean trigger)
+	public void load(double winchAngle,boolean armBack)
 	{
 		if(initialized)
 		{
-			while(winchAngle > Constants.MIN_WINCH_ANGLE)
+			while(!armBack)
 			{
+				armVacuum.set(1.0);
 				winchMotor.set(-1.0);
 			}
-			while(winchAngle <= Constants.MIN_WINCH_ANGLE)
+			while(armBack)
 			{
+				winchDiff = winchAngle;
 				winchMotor.set(0.0);
 				armLock.set(true);
 			}
-			while(winchAngle < Constants.MAX_WINCH_ANGLE)
+			while(armBack)
 			{
 				if(armLock.get())
 				{
-					winchMotor.set(1.0);
+					if(winchAngle+winchDiff < Constants.MAX_WINCH_ANGLE)
+					{
+						winchMotor.set(1.0);
+					}
+					else
+					{
+					winchMotor.set(0.0);	
+					}
 				}
 				else
 				{
 					armLock.set(true);
-					winchMotor.set(1.0);
+					if(winchAngle+winchDiff < Constants.MAX_WINCH_ANGLE)
+					{
+						winchMotor.set(1.0);
+					}
+					else
+					{
+						winchMotor.set(0.0);
+					}
 				}
 			}
 		}
@@ -76,19 +99,20 @@ public class Arm
 	 * @param winchAngle
 	 * @param trigger
 	 */
-	public void fire(double armAngle,double winchAngle, boolean trigger)
+	public void fire(boolean trigger)
 	{
 		if(initialized)
 		{
-			while(winchAngle >= Constants.MAX_WINCH_ANGLE)
+			while(armBack)
 			{
+				armVacuum.set(0);
 				if(trigger)
 				{
 					armLock.set(false);
 					System.out.println("FIRE!!!");
 				}	
 			}
-			while(winchAngle < Constants.MAX_WINCH_ANGLE)
+			while(!armBack)
 			{
 				if(trigger)
 				{
@@ -99,6 +123,13 @@ public class Arm
 		else
 		{
 			new ConstantsImpl().errorArmInit(null);
+		}
+	}
+	public void Test()
+	{
+		if(armBack)
+		{
+			System.out.println("Red-y for firing.");
 		}
 	}
 }

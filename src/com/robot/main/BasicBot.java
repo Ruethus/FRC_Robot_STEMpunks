@@ -1,12 +1,16 @@
 package com.robot.main;
 
 //import com.robot.in.DigitalIOSet;
-//import com.robot.out.Arm;
+// import com.robot.out.Arm;
+
+import edu.wpi.first.wpilibj.ADXL345_I2C;
+import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.ADXL345_I2C;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 public class BasicBot extends IterativeRobot
 {
@@ -16,8 +20,12 @@ public class BasicBot extends IterativeRobot
 	Jaguar ldm,rdm;
 	RobotDrive chassis;
 	ADXL345_I2C acl;
+	AnalogChannel pot,winch;
+	DigitalInput load,ldme,rdme;
 	// double mag,theta,rotation;
-	// Arm arm;
+ 	// Arm arm;
+	Jaguar armVacuum;
+	
 
 	public void robotInit()
 	{
@@ -25,18 +33,21 @@ public class BasicBot extends IterativeRobot
 			// arm = new Arm(5);
 		}
 		j1 = new Joystick(1);
+		
 		ldm = new Jaguar(1);
 		rdm = new Jaguar(2);
+		// armVacuum = new Jaguar(3);
+		
+		// load = new DigitalInput(1);
+		ldme = new DigitalInput(2);
+		rdme = new DigitalInput(3);
+		
 		chassis = new RobotDrive(rdm,ldm);
+		
 		acl = new ADXL345_I2C(1,ADXL345_I2C.DataFormat_Range.k2G);
-		// j2 = new Joystick(2);
-
-		{ // DigitalIOSet initialization
-			// dio.setName(1,"frontLeftCollider");
-			// dio.setName(2,"frontRightCollider");
-			// dio.setName(3,"backLeftCollider");
-			// dio.setName(4,"backRightCollider");
-		}
+		
+		pot = new AnalogChannel(1);
+		// winch = new AnalogChannel(2);
 	}
 
 	public void autonomous()
@@ -56,30 +67,23 @@ public class BasicBot extends IterativeRobot
 
 	public void teleopPeriodic()
 	{
-		// dio.update();
-		// double[] j1axes = {j1.getX(),j1.getY(),j1.getThrottle()};
-		// double[] j2axes = {j2.getX(),j2.getY(),j2.getThrottle()};
-
-		; // <-- Most efficient line of code EVER!!!
-
-		/*
-		 * Expected Mecanum Arrangement
-		 * 
-		 *  \\\\\        /////
-		 *    |            |
-		 * 
-		 *    |            |
-		 *  /////        \\\\\
-		 */
-		/*
-		 * mag = Math.sqrt(Math.pow(j1axes[0],2)+Math.pow(j1axes[1],2)*j1axes[2]);
-		 * theta = Math.atan(j1axes[1]/j1axes[0]);
-		 * rotation = j1axes[2];
-		 * chassis.mecanumDrive_Polar(mag,theta,rotation);
-		 */
-
-		chassis.arcadeDrive(acl.getAcceleration(ADXL345_I2C.Axes.kY),acl.getAcceleration(ADXL345_I2C.Axes.kX),false);
-		System.out.println("Joystick X: " + j1.getX() + "\nJoystick Y: " + j1.getY());
-		System.out.println("Left Motor Value: " + ldm.get() + "\nRight Motor Value: " + rdm.get());
+		SmartDashboard.putData("Potentiometer", pot);
+		System.out.println(pot.getValue());
+		
+		// chassis.arcadeDrive(acl.getAcceleration(ADXL345_I2C.Axes.kY),acl.getAcceleration(ADXL345_I2C.Axes.kX),false);
+		// System.out.println("Joystick X: " + j1.getX() + "\nJoystick Y: " + j1.getY());
+		// System.out.println("Left Motor Value: " + ldm.get() + "\nRight Motor Value: " + rdm.get());
+		chassis.arcadeDrive(j1);
+		// chassis.arcadeDrive(pot.getValue()-5,0,false);
+		
+		
+		// arm.load(winch.getValue(), load.get());
+		// arm.fire(j1.getRawButton(1));
+		
+		
+	}
+	public void getPot(int channel)
+	{
+		System.out.println(pot);
 	}
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/lib/networktables-crio.jar"/>
 	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/lib/networktables-crio.src.zip"/>
 	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/lib/squawk.jar"/>
@@ -15,5 +14,6 @@
 	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/bin/squawk.jar"/>
 	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/bin/squawk_device_classes.jar"/>
 	<classpathentry kind="lib" path="C:/Users/CtrlFreak/Documents/GitHub/FRC_Robot_STEMpunks/sunspotfrcsdk/bin/translator_classes.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

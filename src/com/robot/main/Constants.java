@@ -18,4 +18,6 @@ public interface Constants {
 	 */
 	void errorArmInit(String errorMsg);
 	void errorPort(String errorMsg);
+	void errorGeneric(String errorMsg);
+	void errorVacInit(String errorMsg);
 }
