@@ -46,9 +46,9 @@ public class BasicBot extends IterativeRobot
 		lpn = new Solenoid(2);
 		
 		
-		load = new DigitalInput(0);
-		ldme = new DigitalInput(1);
-		rdme = new DigitalInput(2);
+		load = new DigitalInput(1);
+		ldme = new DigitalInput(2);
+		rdme = new DigitalInput(3);
 		
 		chassis = new RobotDrive(ldm,rdm);
 		chassis.setInvertedMotor(RobotDrive.MotorType.kFrontRight,true);
