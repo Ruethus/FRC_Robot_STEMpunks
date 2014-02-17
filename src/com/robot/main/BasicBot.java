@@ -26,29 +26,34 @@ public class BasicBot extends IterativeRobot
 	GearTooth winch;
 	DigitalInput load,ldme,rdme;
  	Arm arm;
-	Talon armVacuum;
+	Talon armVacuum,armPull;
 	
-	Solenoid rpn,lpn;
+	Solenoid rpn,lpn,armLock;
 	
 	
 	
 	public void robotInit()
 	{
 		{ // Motor initialization
-			arm = new Arm(3,4,j1,1,load,winch);
+			arm = new Arm(1);
 		}
 		j1 = new Joystick(1);
 		
 		ldm = new Talon(2);
 		rdm = new Talon(1);
+		armVacuum = new Talon(4);
+		armPull = new Talon(3);
+		
 		
 		rpn = new Solenoid(1);
 		lpn = new Solenoid(2);
-		
+		armLock = new Solenoid(3);
 		
 		load = new DigitalInput(1);
 		ldme = new DigitalInput(2);
 		rdme = new DigitalInput(3);
+		
+		winch = new GearTooth(6);
 		
 		chassis = new RobotDrive(ldm,rdm);
 		chassis.setInvertedMotor(RobotDrive.MotorType.kFrontRight,true);
@@ -56,7 +61,6 @@ public class BasicBot extends IterativeRobot
 		// acl = new ADXL345_I2C(1,ADXL345_I2C.DataFormat_Range.k2G);
 		
 		pot = new AnalogChannel(1);
-		// winch = new AnalogChannel(2);
 	}
 
 	public void autonomous()
@@ -87,6 +91,6 @@ public class BasicBot extends IterativeRobot
 		// arm.load(winch.getValue(), load.get());
 		// arm.fire(j1.getRawButton(1));
 		// arm.vacuum(j1.getRawButton(2));
-		arm.execute(j1);
+		arm.execute(j1,load,armLock,armVacuum,armPull,winch);
 	}
 }

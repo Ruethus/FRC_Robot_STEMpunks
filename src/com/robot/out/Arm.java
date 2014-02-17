@@ -24,30 +24,14 @@ public class Arm
 	protected Solenoid armLock;
 	protected boolean initialized;
 	protected Talon armVacuum;
-	protected DigitalInput armBack;
 	protected int winchDiff;
-	protected Joystick src;
 	protected int button;
 	protected GearTooth winchAngle;
 
-	public Arm(int armPortNum, int vacuumPortNum, Joystick src, int button, DigitalInput armBack, GearTooth winchAngle)
+	public Arm(int button)
 	{
-		if((armPortNum >= 1 && armPortNum <= 12) && (vacuumPortNum >= 1 && vacuumPortNum<= 12) && (armPortNum != vacuumPortNum))
-		{
-			armVacuum = new Talon(vacuumPortNum);
-			winchMotor = new Talon(armPortNum);
-			initialized = true;
-			this.src = src;
-			this.button = button;
-
-		}
-		else
-		{
-			new ConstantsImpl().errorPort(null);
-			new ConstantsImpl().errorArmInit(null);
-			new ConstantsImpl().errorVacInit(null);
-			initialized = false;
-		}
+		this.button = button;
+		initialized = true;
 	}
 
 	/**
@@ -56,26 +40,26 @@ public class Arm
 	 * @param winchAngle Default min value is 0. Default max value is 5.
 	 * @param armBack Tests to see if the launcher arm is all the way loaded.
 	 */
-	public void load()
+	public void load(DigitalInput armBack,Solenoid armLock,Talon armVacuum,Talon winchMotor,GearTooth winchAngle)
 	{
 		if(initialized)
 		{
-			while(armBack.get())
+			while(!armBack.get())
 			{
 				armVacuum.set(1.0);
 				winchMotor.set(-1.0);
 			}
-			while(!armBack.get())
+			while(armBack.get())
 			{
-				winchDiff = winchAngle.get();
+			//	winchDiff = winchAngle.get();
 				winchMotor.set(0.0);
 				armLock.set(true);
 			}
-			while(!armBack.get())
+			while(armBack.get())
 			{
 				if(armLock.get())
 				{
-					if(winchAngle.get()+winchDiff < Constants.MAX_WINCH_ANGLE)
+					if(winchAngle.get() < Constants.MAX_WINCH_ANGLE)
 					{
 						winchMotor.set(1.0);
 					}
@@ -87,7 +71,7 @@ public class Arm
 				else
 				{
 					armLock.set(true);
-					if(winchAngle.get()+winchDiff < Constants.MAX_WINCH_ANGLE)
+					if(winchAngle.get() < Constants.MAX_WINCH_ANGLE)
 					{
 						winchMotor.set(1.0);
 					}
@@ -108,7 +92,7 @@ public class Arm
 	 * @param winchAngle
 	 * @param trigger
 	 */
-	public void fire()
+	public void fire(DigitalInput armBack,Joystick src)
 	{
 		if(initialized)
 		{
@@ -134,19 +118,19 @@ public class Arm
 			new ConstantsImpl().errorArmInit(null);
 		}
 	}
-	public void Test()
+	public void Test(DigitalInput armBack)
 	{
 		if(armBack.get())
 		{
 			System.out.println("Red-y for firing.");
 		}
 	}
-	public void execute(Joystick src)
+	public void execute(Joystick src,DigitalInput armBack,Solenoid armLock,Talon armVacuum,Talon winchMotor,GearTooth winchAngle)
 	{
 		if(src.getRawButton(button))
-			fire();
+			fire(armBack,src);
 		else
-			load();
+			load(armBack,armLock,armVacuum,winchMotor,winchAngle);
 	}
 	public void Vacuum(boolean vac)
 	{
